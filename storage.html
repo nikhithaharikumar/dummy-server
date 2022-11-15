@@ -1,0 +1,131 @@
+<html>
+<head><title> Demo Page </title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
+
+    <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+		console.log("In Event Listener");
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+						
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+			console.log(account);
+		
+		abi = [
+	{
+		"inputs": [],
+		"name": "add",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "_number",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_department",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "_mark1",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "_mark2",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "_mark3",
+				"type": "int256"
+			}
+		],
+		"name": "store",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "retrieve",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+
+contractaddress = '0x7d2FcfE9E4c88C7D0eBEEB929065dBF4c6c73ec2';
+
+var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+							
+var result = myContract.methods.store(44,"Ramaguru","cys",80,90,70).send(function (err, result) {
+				
+		console.log("Result: ", result);
+			if (result) { console.log(result); }					
+		});			
+
+var result = myContract.methods.retrieve().call(function (err, result) {
+				
+		console.log("Result: ", result);
+			if (result) { console.log(result[0]); }					
+		});			
+
+		});
+		
+		
+    </script>	
+</body>
+</html>	
