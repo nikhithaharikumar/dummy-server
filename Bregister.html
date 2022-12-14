@@ -123,13 +123,12 @@
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
 			var ds1 = document.getElementById("addr").value;
 			var ds2 = document.getElementById("bname").value;
-            var tname = document.getElementById("hname").value;
-            var id = document.getElementById("id1").value;
-
-            var tdate = document.getElementById("mdate").value;
-            var tdate1 = document.getElementById("edate").value;
-            var tunits = document.getElementById("units").value;
-            var tphn = document.getElementById("phonenum").value;
+                        var tname = document.getElementById("hname").value;
+                        var id = document.getElementById("id1").value;
+                        var tdate = document.getElementById("mdate").value;
+                        var tdate1 = document.getElementById("edate").value;
+                        var tunits = document.getElementById("units").value;
+                        var tphn = document.getElementById("phonenum").value;
              var result = myContract.methods.store_manufacture_details(id,tdate,tdate1,tunits,tphn,ds2,ds1,tname).send(function (err, result) {
                
                 if (err) { console.log(err); }
