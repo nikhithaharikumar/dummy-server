@@ -29,15 +29,7 @@
 			account = accounts[0];
 				
 			}
-		// Legacy DApp browsers
-		else if (window.web3) {
-			//window.web3 = new Web3(web3.currentProvider);
-			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
-			}
-		// Non-DApp browsers
-		else {
-			console.log('Non-Ethereum browser detected. Please install MetaMask');
-			}
+		console.log(account);
 			
 			});
     	
@@ -179,11 +171,34 @@
 		  </tr>
             <tr>
 			<td> Beekeeper Name:</td>
-			<td><input type="text" id="name1" name="name1"></td>
+			<td><input type="text" id="bname" name="bname"></td>
 		  </tr>
             <tr>
 			<td>Beekeeper Address:</td>
 			<td><input type="text" id="addr" name="addr"></td>
+		  </tr>
+			
+			 <tr>
+			<td>Enter Phn num:</td>
+			<td><input type="text" id="phonenum" name="phonenum"></td>
+		  </tr>
+			
+			 <tr>
+			<td>Enter Honey name:</td>
+			<td><input type="text" id="hname" name="hname"></td>
+		  </tr>
+			
+			 <tr>
+			<td>Enter Manufacture date:</td>
+			<td><input type="text" id="mdate" name="mdate"></td>
+		  </tr>
+			 <tr>
+			<td>Enter Expiry date:</td>
+			<td><input type="text" id="edate" name="edate"></td>
+		  </tr>
+			 <tr>
+			<td>Enter Units:</td>
+			<td><input type="text" id="units" name="units"></td>
 		  </tr>
            
 		  <tr>
