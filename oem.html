@@ -1,0 +1,232 @@
+<html>
+<head>
+<title>Distributor Registration</title>
+</head>
+    <body>
+	<p><a href="Beekeeper.html"><button type="submit" class="hidden" style='margin-right:16px'>Beekeeper Registration</button></a><a href="Distributor.html"><button type="submit" class="hidden" style='margin-right:16px'>Distributor Registration</button></a><a href="Distributor_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Distibutor Details</button></a><a href="record_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Honey Record</button></a><a href="examine_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Distributor Examine details</button></a></p>
+      
+        <h1>Distributor Registration </h1>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
+    <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		console.log(account);
+			
+			});
+    	
+        var abi =[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oem_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_part_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_part_manufactureddate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_part_maintenance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_phone_no",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_oem_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_oem_address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_aircraft_type",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_part_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_part_condition",
+				"type": "string"
+			}
+		],
+		"name": "store_manufacture_details",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oem_id",
+				"type": "uint256"
+			}
+		],
+		"name": "retreive_manufacture_details",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+        var contractaddress = '0x1eD4f106A746060d3bb71d107f87E984cCEe994F';
+        
+        function add_details() {
+            var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
+			var ds1 = document.getElementById("oaddr").value;
+			var ds2 = document.getElementById("oname").value;
+                        var tname = document.getElementById("pname").value;
+                        var id = document.getElementById("oid").value;
+                        var pid = document.getElementById("pid").value;
+                        var tdate = document.getElementById("mdate").value;
+                        var tdate1 = document.getElementById("maint").value;
+                        var tunits = document.getElementById("condn").value;
+                        var tphn = document.getElementById("phonenum").value;
+                        var ttype = document.getElementById("atype").value;
+             var result = myContract.methods.store_manufacture_details(id,pid,tdate,tdate1,tphn,ds2,ds1,ttype,tname,tunits).send(function (err, result) {
+               
+                if (err) { console.log(err); }
+                if (result) { document.getElementById("result").innerHTML = result; }
+               
+                });
+        }
+		function show_details() {
+            var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
+            var idd = document.getElementById("tid").value;
+             var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
+               
+                if (err) { console.log(err); }
+                if (result) { 
+                    document.getElementById("get_oname").innerHTML = result[0];
+		    document.getElementById("get_oaddr").innerHTML = result[1];
+		    document.getElementById("get_pname").innerHTML = result[2];
+                document.getElementById("get_condn").innerHTML = result[3];
+                }
+               
+                });
+        }
+        function del_details() {
+            var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
+            var bid = document.getElementById("bid1").value;
+             var result = myContract.methods.burnMyToken(bid).send(function (err, result) {
+               
+                if (err) { console.log(err); }
+                });
+        }
+        </script>
+
+       
+        <h2>Distributor Registration</h2>
+    <form>
+		<table style="width:25%"> 
+            <tr>
+			<td>Enter Distrib Id:</td>
+			<td><input type="text" id="oid" name="oid"></td>
+		  </tr>
+            <tr>
+			<td> Distributor Name:</td>
+			<td><input type="text" id="oname" name="oname"></td>
+		  </tr>
+            <tr>
+			<td> Distributor Address:</td>
+			<td><input type="text" id="oaddr" name="oaddr"></td>
+		  </tr>
+	    <tr>
+			<td>Enter Phn num:</td>
+			<td><input type="text" id="phonenum" name="phonenum"></td>
+		  </tr>
+          <tr>
+			<td> Maintenance Name:</td>
+			<td><input type="text" id="maint" name="maint"></td>
+		  </tr>
+	    <tr>
+			<td>Enter part name:</td>
+			<td><input type="text" id="pname" name="pname"></td>
+		  </tr>
+          <tr>
+			<td>Enter aircraft type:</td>
+			<td><input type="text" id="atype" name="atype"></td>
+		  </tr>
+	    <tr>
+			<td>Enter Manufacture date:</td>
+			<td><input type="text" id="mdate" name="mdate"></td>
+		  </tr>
+	    <tr>
+			<td>Enter Condition:</td>
+			<td><input type="text" id="condn" name="condn"></td>
+		  </tr>
+	     <tr>
+			<td>part id:</td>
+			<td><input type="text" id="pid" name="pid"></td>
+		  </tr>
+           <tr>
+		  <td><input type="button" onclick="add_details()" value="Register"></td>
+		  </tr>
+		</table>
+		</form>
+        <h3>To get details of a beekeper  <a href="bregister_details.html">Click Here</a></h3>
+    </body>
+</html>
