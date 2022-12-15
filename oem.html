@@ -33,7 +33,7 @@
 			
 			});
     	
-        var abi =[
+        var abi = [
 	{
 		"inputs": [
 			{
@@ -43,22 +43,12 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "_part_id",
+				"name": "_phone_num",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
 				"name": "_part_manufactureddate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_part_maintenance",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_phone_no",
 				"type": "uint256"
 			},
 			{
@@ -73,12 +63,17 @@
 			},
 			{
 				"internalType": "string",
-				"name": "_aircraft_type",
+				"name": "_part_name",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "_part_name",
+				"name": "_part_maintainenace",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_aircraft_type",
 				"type": "string"
 			},
 			{
@@ -132,7 +127,7 @@
 		"type": "function"
 	}
 ]
-        var contractaddress = '0x1eD4f106A746060d3bb71d107f87E984cCEe994F';
+        var contractaddress = '0x0bE6102c3Cf83BF3dfC6918eEa83a55927437626';
         
         function add_details() {
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
@@ -140,13 +135,12 @@
 			var ds2 = document.getElementById("oname").value;
                         var tname = document.getElementById("pname").value;
                         var id = document.getElementById("oid").value;
-                        var pid = document.getElementById("pid").value;
                         var tdate = document.getElementById("mdate").value;
                         var tdate1 = document.getElementById("maint").value;
                         var tunits = document.getElementById("condn").value;
                         var tphn = document.getElementById("phonenum").value;
                         var ttype = document.getElementById("atype").value;
-             var result = myContract.methods.store_manufacture_details(id,pid,tdate,tdate1,tphn,ds2,ds1,ttype,tname,tunits).send(function (err, result) {
+             var result = myContract.methods.store_manufacture_details(id,tphn,tdate,ds2,ds1,tname,tdate1,ttype,tunits).send(function (err, result) {
                
                 if (err) { console.log(err); }
                 if (result) { document.getElementById("result").innerHTML = result; }
@@ -218,11 +212,7 @@
 			<td>Enter Condition:</td>
 			<td><input type="text" id="condn" name="condn"></td>
 		  </tr>
-	     <tr>
-			<td>part id:</td>
-			<td><input type="text" id="pid" name="pid"></td>
-		  </tr>
-           <tr>
+         <tr>
 		  <td><input type="button" onclick="add_details()" value="Register"></td>
 		  </tr>
 		</table>
