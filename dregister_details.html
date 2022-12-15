@@ -149,8 +149,7 @@
              var result = myContract.methods.store_manufacture_details(id,tphn,tunits,tdate,tdate1,ds2,ds1,mname,tname,ttype).send(function (err, result) {
                
                 if (err) { console.log(err); }
-                if (result) { document.getElementById("result").innerHTML = result; }
-               
+                if (result) { document.getElementById("result").innerHTML = result; 
                 });
         }
 		function show_details() {
@@ -163,9 +162,8 @@
                     document.getElementById("get_dname").innerHTML = result[0];
 		    document.getElementById("get_daddr").innerHTML = result[1];
 		    document.getElementById("get_hname").innerHTML = result[2];
-                document.getElementById("get_mname1").innerHTML = result[3];
-                }
-               
+                    document.getElementById("get_mname1").innerHTML = result[3];
+                } 
                 });
         }
         function del_details() {
@@ -206,7 +204,7 @@
 			<td>Manufacturer name:</td>
 		      <td><div id="get_mname1"></div></td>
 		  </tr>
-		</table>	
+	    </table>	
 	</form>
     </body>
 </html>
