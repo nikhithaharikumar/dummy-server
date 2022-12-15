@@ -143,7 +143,9 @@
                
                 if (err) { console.log(err); }
                 if (result) { 
-                           document.getElementById("result1").innerHTML = result;
+                           document.getElementById("get_bname").innerHTML = result[0];
+		           document.getElementById("get_addr").innerHTML = result[1];
+		           document.getElementById("get_hname").innerHTML = result[2];
                 }
                
                 });
@@ -168,22 +170,22 @@
 		<table style="width:25%"> 
             <tr>
 			<td>Enter Beekeeper Id:</td>
-			<td><input type="text" id="id1" name="id1"></td>
+			<td><input type="text" id="tid" name="tid"></td>
 		  </tr>
             <tr>
 		  <td><input type="button" onclick="show_details()" value="Getdetails"></td>
 		  </tr>
             <tr>
 			<td> Beekeeper Name:</td>
-			<td><input type="text" id="bname" name="bname"></td>
+		    <td><div id="get_bname"></div></td>
 		  </tr>
             <tr>
 			<td>Beekeeper Address:</td>
-			<td><input type="text" id="addr" name="addr"></td>
+		    <td><div id="get_addr"></div></td>
 		  </tr>
 	      <tr>
 			<td>Enter Honey name:</td>
-			<td><input type="text" id="hname" name="hname"></td>
+		      <td><div id="get_hname"></div></td>
 		  </tr> 
 		</table>	
 	</form>
