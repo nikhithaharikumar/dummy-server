@@ -117,7 +117,7 @@
 		"type": "function"
 	}
 ];
-        var contractaddress = '0xa2eF6931f627B50982f41A3bB0e1649895B08b0f';
+        var contractaddress = '0x64E8Eb09B127840F9644618500ba8D84d15ab164';
         
         function add_details() {
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
@@ -192,15 +192,14 @@
 			<td>Enter Expiry date:</td>
 			<td><input type="text" id="edate" name="edate"></td>
 		  </tr>
-	     <tr>
+	    <tr>
 			<td>Enter Units:</td>
 			<td><input type="text" id="units" name="units"></td>
 		  </tr>
-             <tr>
+            <tr>
 		  <td><input type="button" onclick="add_details()" value="Register"></td>
 		  </tr>
-		</table>
-		
+		</table>	
 	</form>
         <h3>To get details of a beekeper  <a href="bregister_details.html">Click Here</a></h3>
     </body>
