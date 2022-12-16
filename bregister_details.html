@@ -4,7 +4,6 @@
 </head>
     <body>
 	<p><a href="Beekeeper.html"><button type="submit" class="hidden" style='margin-right:16px'>Beekeeper Registration</button></a><a href="Distributor.html"><button type="submit" class="hidden" style='margin-right:16px'>Distributor Registration</button></a><a href="Distributor_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Distibutor Details</button></a><a href="record_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Honey Record</button></a>
-      
         <h1>Beekeeper Registration </h1>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
     <script>	
@@ -141,15 +140,13 @@
                            document.getElementById("get_bname").innerHTML = result[0];
 		           document.getElementById("get_addr").innerHTML = result[1];
 		           document.getElementById("get_hname").innerHTML = result[2];
-                }
-               
-                });
+		}
+                 });
         }
         function del_details() {
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
             var bid = document.getElementById("bid1").value;
              var result = myContract.methods.burnMyToken(bid).send(function (err, result) {
-               
                 if (err) { console.log(err); }
                 if (result) { 
                     document.getElementById("result1").innerHTML = result;
