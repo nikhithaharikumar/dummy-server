@@ -1,14 +1,18 @@
 <html>
 <head>
-<title>Register Beekeeper</title>
+<title>Beekeeper Details</title>
 </head>
     <body>
 	<p><a href="Beekeeper.html"><button type="submit" class="hidden" style='margin-right:16px'>Beekeeper Registration</button></a><a href="Distributor.html"><button type="submit" class="hidden" style='margin-right:16px'>Distributor Registration</button></a><a href="Distributor_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Distibutor Details</button></a><a href="record_details.html"><button type="submit" class="hidden" style='margin-right:16px'>View Honey Record</button></a>
-        <h1>Beekeeper Registration </h1>
+      
+       <h1> Display Beekeeper Details </h1>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
     <script>	
+	
 	var account;
 	window.addEventListener('load', async () => {
+
+	
 		if (typeof window.ethereum !== 'undefined') { 
 			console.log("MetaMask is Available :) !"); 
 			}
@@ -30,40 +34,6 @@
 			});
     	
         var abi = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "manufacture_id",
-				"type": "uint256"
-			}
-		],
-		"name": "retreive_manufacture_details",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
 	{
 		"inputs": [
 			{
@@ -111,8 +81,42 @@
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "manufacture_id",
+				"type": "uint256"
+			}
+		],
+		"name": "retreive_manufacture_details",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
-];
+]
         var contractaddress = '0x64E8Eb09B127840F9644618500ba8D84d15ab164';
         
         function add_details() {
@@ -126,56 +130,56 @@
                         var tunits = document.getElementById("units").value;
                         var tphn = document.getElementById("phonenum").value;
              var result = myContract.methods.store_manufacture_details(id,tdate,tdate1,tunits,tphn,ds2,ds1,tname).send(function (err, result) {
+               
                 if (err) { console.log(err); }
                 if (result) { document.getElementById("result").innerHTML = result; }
+               
                 });
         }
 		function show_details() {
-                  var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
-                  var idd = document.getElementById("tid").value;
-                  var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
-                   if (err) { console.log(err); }
-                   if (result) { 
-                           document.getElementById("get_bname").innerHTML = result[0];
-		           document.getElementById("get_addr").innerHTML = result[1];
-		           document.getElementById("get_hname").innerHTML = result[2];
-		}
-                 });
+            var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
+            var idd = document.getElementById("tid").value;
+             var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
+                if (err) { console.log(err); }
+                if (result) { 
+                    document.getElementById("get_bname").innerHTML = result[0];
+		    document.getElementById("get_addr").innerHTML = result[1];
+		    document.getElementById("get_hname").innerHTML = result[2];
+                }
+               
+                });
         }
         function del_details() {
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
             var bid = document.getElementById("bid1").value;
              var result = myContract.methods.burnMyToken(bid).send(function (err, result) {
+               
                 if (err) { console.log(err); }
-                if (result) { 
-                    document.getElementById("result1").innerHTML = result;
-                }
                 });
         }
         </script>
-        <h2>Beekeeper details</h2>
-            <form>
-		<table style="width:25%"> 
+
+        <h3>Beekeeper Details:</h3>
+        <form>
+		<table style="width:25%">
             <tr>
 			<td>Enter Beekeeper Id:</td>
 			<td><input type="text" id="tid" name="tid"></td>
 		  </tr>
-            <tr>
-		  <td><input type="button" onclick="show_details()" value="Getdetails"></td>
-		  </tr>
+		  <tr><td><input type="button" onclick="show_details()" value="Get Details"></td></tr>
             <tr>
 			<td> Beekeeper Name:</td>
-		    <td><div id="get_bname"></div></td>
-		  </tr>
-            <tr>
-			<td>Beekeeper Address:</td>
-		    <td><div id="get_addr"></div></td>
+			<td><div id="get_bname"></div></td>
 		  </tr>
 	    <tr>
-			<td>Enter Honey name:</td>
-		      <td><div id="get_hname"></div></td>
-		  </tr> 
-		</table>	
-	    </form>
+			<td>Beekeeper Address:</td>
+			<td><div id="get_addr"></div></td>
+		  </tr>
+	    <tr>
+			<td>Honey name:</td>
+			<td><div id="get_hname"></div></td>
+		  </tr>
+		</table>
+        </form>  
     </body>
 </html>
