@@ -11,8 +11,8 @@
 	
 	var account;
 	window.addEventListener('load', async () => {
+		      console.log("in eventlistener");
 
-	
 		if (typeof window.ethereum !== 'undefined') { 
 			console.log("MetaMask is Available :) !"); 
 			}
@@ -29,7 +29,7 @@
 			account = accounts[0];
 				
 			}
-		console.log(account);
+		                   console.log(account);
 			
 			});
     	
@@ -154,9 +154,9 @@
                 });
         }
 		function show_details() {
-            var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
-            var idd = document.getElementById("tid").value;
-             var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
+                        var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
+                        var idd = document.getElementById("tid").value;
+                        var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
                
                 if (err) { console.log(err); }
                 if (result) { 
